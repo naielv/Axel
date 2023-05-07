@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
 const module_photo = "e";
+const urlParams = new URLSearchParams(window.location.search);
 
 function Module(module_url, v) {
   var xmlHttp = new XMLHttpRequest();
@@ -10,37 +11,52 @@ function Module(module_url, v) {
   return String(result_1);
 }
 function index() {
-  var card1_photo = Module("/modules/photo.html", {
-    source: "img/KCAL.png",
-    alt: "Icono de la app KCAL",
-  });
-  var card2_photo = Module("/modules/photo.html", {
-    source: "img/SHOP.png",
-    alt: "Icono de la app SHOP",
-  });
-  var card1 = Module("/modules/card.html", {
-    photo: card1_photo,
-    title: "Nivel de calorias",
-    text: "Calculadora para saber el nivel de calorias",
-    btn: {
+  let out = "";
+  const apps = [
+    {
+      img: "img/KCAL.png",
+      name: "Nivel de Calorias",
+      alt: "Icono de la app KCAL",
+      details: "Calculadora para saber el nivel de calorias",
       url: "/app/kcal.html",
-      text: "Acceder",
     },
-  });
-  var card2 = Module("/modules/card.html", {
-    photo: card2_photo,
-    title: "Tienda (Beta)",
-    btn: {
+    {
+      img: "img/SHOP.png",
+      name: "Tienda (Beta)",
+      alt: "Icono de la app SHOP",
+      details: "Fuera de servicio",
       url: "#",
-      text: "Fuera de servicio",
     },
+    {
+      img: "img/BOOKS.png",
+      name: "Biblioteca Digital",
+      alt: "Icono de la app BOOKS",
+      details: "En Desarollo",
+      url: "/app/books.html",
+    },
+  ];
+  apps.forEach((element) => {
+    var photo = Module("/modules/photo.html", {
+      source: element.img,
+      alt: element.name,
+    });
+    var card = Module("/modules/card.html", {
+      photo: photo,
+      title: element.name,
+      text: element.details,
+      btn: {
+        url: element.url,
+        text: "Acceder",
+      },
+    });
+    out += card;
   });
   var grid = Module("/modules/grid.html", {
-    content: card1 + card2,
+    content: out,
   });
   container.innerHTML = grid;
 }
-
+//////// APP KCal: Nivel de Calorias ////////
 function app_kcal_calcular() {
   const inp = document.getElementById("inp_kcal");
   const ovl = document.getElementById("out_kcal");
@@ -83,6 +99,49 @@ function app_kcal() {
     content: card1,
   });
   container.innerHTML = grid;
+}
+//////// APP Books: Biblioteca digital ////////
+
+function app_books() {
+  const view = urlParams.has("book");
+  const book = urlParams.get("book");
+  let out = "";
+  const books = [
+    {
+      img: "/img/BOOKS.png",
+      pdf: "/",
+      name: "Libro de Prueba",
+      details:
+        "Esto solo es una prueba, te redirigira a la pantalla de inicio.",
+      id: "prueba",
+    },
+  ];
+
+  if (view) {
+    const selbook = books.find(({ id }) => id === book);
+    location.href = selbook.pdf;
+  } else {
+    books.forEach((element) => {
+      var photo = Module("/modules/photo.html", {
+        source: element.img,
+        alt: element.name,
+      });
+      var card = Module("/modules/card.html", {
+        photo: photo,
+        title: element.name,
+        text: element.details,
+        btn: {
+          url: "/app/books.html?book=" + element.id,
+          text: "Ver Libro",
+        },
+      });
+      out += card;
+    });
+    var grid = Module("/modules/grid.html", {
+      content: out,
+    });
+    container.innerHTML = grid;
+  }
 }
 
 if ("serviceWorker" in navigator) {
