@@ -10,48 +10,77 @@ function Module(module_url, v) {
   return String(result_1);
 }
 function index() {
-  var card_photo = Module("/modules/photo.html", {
-    source: "img/coffee.jpg",
-    alt: "Photo of Coffee",
+  var card1_photo = Module("/modules/photo.html", {
+    source: "img/KCAL.png",
+    alt: "Icono de la app KCAL",
+  });
+  var card2_photo = Module("/modules/photo.html", {
+    source: "img/SHOP.png",
+    alt: "Icono de la app SHOP",
   });
   var card1 = Module("/modules/card.html", {
-    photo: card_photo,
-    title: "Café Corazon",
-    text: "Cafe riquisimo con dibujo de corazon",
+    photo: card1_photo,
+    title: "Nivel de calorias",
+    text: "Calculadora para saber el nivel de calorias",
     btn: {
-      url: "/",
-      text: "Test",
+      url: "/app/kcal.html",
+      text: "Acceder",
     },
   });
   var card2 = Module("/modules/card.html", {
-    photo: card_photo,
-    title: "Café Corazon",
-    text: "Cafe riquisimo con dibujo de corazon",
+    photo: card2_photo,
+    title: "Tienda (Beta)",
     btn: {
       url: "#",
-      text: "Test",
-    },
-  });
-  var card3 = Module("/modules/card.html", {
-    photo: card_photo,
-    title: "Café Corazon",
-    text: "Cafe riquisimo con dibujo de corazon",
-    btn: {
-      url: "#",
-      text: "Test",
-    },
-  });
-  var card4 = Module("/modules/card.html", {
-    photo: card_photo,
-    title: "Café Corazon",
-    text: "Cafe riquisimo con dibujo de corazon",
-    btn: {
-      url: "#",
-      text: "Test",
+      text: "Fuera de servicio",
     },
   });
   var grid = Module("/modules/grid.html", {
-    content: card1 + card2 + card3 + card4,
+    content: card1 + card2,
+  });
+  container.innerHTML = grid;
+}
+
+function app_kcal_calcular() {
+  const inp = document.getElementById("inp_kcal");
+  const ovl = document.getElementById("out_kcal");
+  const kcal = Number(inp.value);
+  let out = "";
+  if (kcal <= 300) {
+    out = "Muy Bajo";
+  } else if (kcal <= 450) {
+    out = "Bajo";
+  } else if (kcal >= 925) {
+    out = "Muy Alto";
+  } else if (kcal >= 750) {
+    out = "Alto";
+  } else {
+    out = "Regular";
+  }
+  ovl.innerHTML = out;
+}
+function app_kcal() {
+  var input1 = Module("/modules/input.html", {
+    id: "inp_kcal",
+    label: "KCal",
+    type: "number",
+    placeholder: "Introduce un numero...",
+  });
+  var button = Module("/modules/button.html", {
+    label: "Calcular",
+    onclick: "app_kcal_calcular()",
+  });
+  var output = Module("/modules/output.html", {
+    label: "Resultado",
+    id: "out_kcal",
+  });
+  var card1 = Module("/modules/card.html", {
+    title: "Nivel de calorias",
+    text: "Calculadora para saber el nivel de calorias",
+    footer: input1 + button + output,
+  });
+  var grid = Module("/modules/grid.html", {
+    content: card1,
   });
   container.innerHTML = grid;
 }
