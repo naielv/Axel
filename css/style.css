@@ -12,7 +12,6 @@ body {
 }
 
 main {
-  max-width: 900px;
   margin: auto;
   padding: 0.5rem;
   text-align: center;
@@ -35,4 +34,43 @@ li {
 h1 {
   color: #e74c3c;
   margin-bottom: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 1rem 0;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 19rem;
+  margin: auto;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.btn {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #04aa6d;
+}
+.btn:hover {
+  background-color: #46a049;
 }
