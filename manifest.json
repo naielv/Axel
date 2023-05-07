@@ -8,9 +8,9 @@
   "orientation": "natural",
   "icons": [
     {
-      "src": "/img/icon.png",
+      "src": "/img/logo.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "500x500"
     }
   ],
   "description": "Axel PWA",
