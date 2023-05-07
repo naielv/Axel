@@ -2,5 +2,5 @@
     ${v.photo}
     <h2>${v.title}</h2>
     <p>${v.text}</p>
-    ${(v.btn=={} ? "" : `<btn class="btn" href="${v.btn.url}">${v.btn.text}</btn>`)}
+    ${(v.btn=={} ? "" : `<a class="btn" href="${v.btn.url}">${v.btn.text}</a>`)}
 </div>
