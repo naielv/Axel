@@ -21,4 +21,7 @@ self.addEventListener("fetch", (fetchEvent) => {
       return fetch(fetchEvent.request) || res;
     })
   );
+  caches.open(staticCache).then((cache) => {
+    cache.addAll(assets);
+  });
 });
