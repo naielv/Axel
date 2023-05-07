@@ -10,11 +10,11 @@ function Module(module_url, v) {
   return String(result_1);
 }
 function index() {
-  var card_photo = Module("modules/photo.html", {
+  var card_photo = Module("/modules/photo.html", {
     source: "img/coffee.jpg",
     alt: "Photo of Coffee",
   });
-  var card1 = Module("modules/card.html", {
+  var card1 = Module("/modules/card.html", {
     photo: card_photo,
     title: "Café Corazon",
     text: "Cafe riquisimo con dibujo de corazon",
@@ -23,7 +23,7 @@ function index() {
       text: "Test",
     },
   });
-  var card2 = Module("modules/card.html", {
+  var card2 = Module("/modules/card.html", {
     photo: card_photo,
     title: "Café Corazon",
     text: "Cafe riquisimo con dibujo de corazon",
@@ -32,7 +32,7 @@ function index() {
       text: "Test",
     },
   });
-  var card3 = Module("modules/card.html", {
+  var card3 = Module("/modules/card.html", {
     photo: card_photo,
     title: "Café Corazon",
     text: "Cafe riquisimo con dibujo de corazon",
@@ -41,7 +41,7 @@ function index() {
       text: "Test",
     },
   });
-  var card4 = Module("modules/card.html", {
+  var card4 = Module("/modules/card.html", {
     photo: card_photo,
     title: "Café Corazon",
     text: "Cafe riquisimo con dibujo de corazon",
@@ -50,7 +50,7 @@ function index() {
       text: "Test",
     },
   });
-  var grid = Module("modules/grid.html", {
+  var grid = Module("/modules/grid.html", {
     content: card1 + card2 + card3 + card4,
   });
   container.innerHTML = grid;

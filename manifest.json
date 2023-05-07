@@ -1,16 +1,22 @@
 {
   "name": "Axel",
   "short_name": "Axel",
-  "start_url": "index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
-  "orientation": "portrait-primary",
+  "orientation": "natural",
   "icons": [
     {
       "src": "/img/icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
+  ],
+  "description": "Axel PWA",
+  "dir": "auto",
+  "lang": "es",
+  "display_override": [
+    "standalone"
   ]
 }
