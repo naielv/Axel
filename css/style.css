@@ -85,3 +85,6 @@ h1 {
   border: 2px dashed black;
   margin: 0 10px;
 }
+img {
+  width: 100%;
+}
