@@ -1,0 +1,10 @@
+[
+    {
+      "img": "book.png",
+      "pdf": "https://biblioteca.org.ar/libros/88738.pdf",
+      "name": "Romeo y Julieta",
+      "details":
+        "William Shakespeare",
+      "id": "romeo_y_julieta"
+    }
+  ]

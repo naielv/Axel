@@ -4,43 +4,28 @@ const urlParams = new URLSearchParams(window.location.search);
 
 function Module(module_url, v) {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", module_url, false); // false for synchronous request
+  xmlHttp.open("GET", "/modules/" + module_url, false); // false for synchronous request
   xmlHttp.send(null);
   const text = xmlHttp.responseText;
   const result_1 = eval("`" + text + "`");
   return String(result_1);
 }
+function JSONGet(json_url) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", "/json/" + json_url, false); // false for synchronous request
+  xmlHttp.send(null);
+  return JSON.parse(xmlHttp.responseText);
+}
+
 function index() {
   let out = "";
-  const apps = [
-    {
-      img: "img/KCAL.png",
-      name: "Nivel de Calorias",
-      alt: "Icono de la app KCAL",
-      details: "Calculadora para saber el nivel de calorias",
-      url: "/app/kcal.html",
-    },
-    {
-      img: "img/SHOP.png",
-      name: "Tienda (Beta)",
-      alt: "Icono de la app SHOP",
-      details: "Fuera de servicio",
-      url: "#",
-    },
-    {
-      img: "img/BOOKS.png",
-      name: "Biblioteca Digital",
-      alt: "Icono de la app BOOKS",
-      details: "En Desarollo",
-      url: "/app/books.html",
-    },
-  ];
+  const apps = JSONGet("apps.json");
   apps.forEach((element) => {
-    var photo = Module("/modules/photo.html", {
-      source: element.img,
+    var photo = Module("photo.html", {
+      source: "/img/app_icons/" + element.img,
       alt: element.name,
     });
-    var card = Module("/modules/card.html", {
+    var card = Module("card.html", {
       photo: photo,
       title: element.name,
       text: element.details,
@@ -51,7 +36,7 @@ function index() {
     });
     out += card;
   });
-  var grid = Module("/modules/grid.html", {
+  var grid = Module("grid.html", {
     content: out,
   });
   container.innerHTML = grid;
@@ -76,26 +61,26 @@ function app_kcal_calcular() {
   ovl.innerHTML = out;
 }
 function app_kcal() {
-  var input1 = Module("/modules/input.html", {
+  var input1 = Module("input.html", {
     id: "inp_kcal",
     label: "KCal",
     type: "number",
     placeholder: "Introduce un numero...",
   });
-  var button = Module("/modules/button.html", {
+  var button = Module("button.html", {
     label: "Calcular",
     onclick: "app_kcal_calcular()",
   });
-  var output = Module("/modules/output.html", {
+  var output = Module("output.html", {
     label: "Resultado",
     id: "out_kcal",
   });
-  var card1 = Module("/modules/card.html", {
+  var card1 = Module("card.html", {
     title: "Nivel de calorias",
     text: "Calculadora para saber el nivel de calorias",
     footer: input1 + button + output,
   });
-  var grid = Module("/modules/grid.html", {
+  var grid = Module("grid.html", {
     content: card1,
   });
   container.innerHTML = grid;
@@ -106,27 +91,23 @@ function app_books() {
   const view = urlParams.has("book");
   const book = urlParams.get("book");
   let out = "";
-  const books = [
-    {
-      img: "/img/BOOKS.png",
-      pdf: "/",
-      name: "Libro de Prueba",
-      details:
-        "Esto solo es una prueba, te redirigira a la pantalla de inicio.",
-      id: "prueba",
-    },
-  ];
+  const books = JSONGet("books.json");
 
   if (view) {
     const selbook = books.find(({ id }) => id === book);
-    location.href = selbook.pdf;
+    var pdf = Module("pdf.html", {
+      source: selbook.pdf,
+      width: "100%",
+      height: "750vh"
+    });
+    out = pdf
   } else {
     books.forEach((element) => {
-      var photo = Module("/modules/photo.html", {
-        source: element.img,
+      var photo = Module("photo.html", {
+        source: "/img/app_books/" + element.img,
         alt: element.name,
       });
-      var card = Module("/modules/card.html", {
+      var card = Module("card.html", {
         photo: photo,
         title: element.name,
         text: element.details,
@@ -137,11 +118,11 @@ function app_books() {
       });
       out += card;
     });
-    var grid = Module("/modules/grid.html", {
-      content: out,
-    });
-    container.innerHTML = grid;
   }
+  var grid = Module("grid.html", {
+    content: out,
+  });
+  container.innerHTML = grid;
 }
 
 if ("serviceWorker" in navigator) {

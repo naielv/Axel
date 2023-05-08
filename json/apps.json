@@ -1,0 +1,23 @@
+[
+  {
+    "img": "KCAL.png",
+    "name": "Nivel de Calorias",
+    "alt": "Icono de la app KCAL",
+    "details": "Calculadora para saber el nivel de calorias",
+    "url": "/app/kcal.html"
+  },
+  {
+    "img": "SHOP.png",
+    "name": "Tienda (Beta)",
+    "alt": "Icono de la app SHOP",
+    "details": "Fuera de servicio",
+    "url": "#"
+  },
+  {
+    "img": "BOOKS.png",
+    "name": "Biblioteca Digital",
+    "alt": "Icono de la app BOOKS",
+    "details": "En Desarollo",
+    "url": "/app/books.html"
+  }
+]
