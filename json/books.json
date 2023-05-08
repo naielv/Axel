@@ -1,10 +1,16 @@
 [
-    {
-      "img": "book.png",
-      "pdf": "https://biblioteca.org.ar/libros/88738.pdf",
-      "name": "Romeo y Julieta",
-      "details":
-        "William Shakespeare",
-      "id": "romeo_y_julieta"
-    }
-  ]
+  {
+    "img": "book.png",
+    "pdf": "https://biblioteca.org.ar/libros/88738.pdf",
+    "name": "Romeo y Julieta",
+    "details": "Libro: William Shakespeare",
+    "id": "libro_1"
+  },
+  {
+    "img": "book.png",
+    "pdf": "/img/app_books/pdf/1.pdf",
+    "name": "Receta: Enchiladas De Pollo",
+    "details": "Naiel V",
+    "id": "receta_1"
+  }
+]

@@ -56,7 +56,7 @@ function app_kcal_calcular() {
   } else if (kcal >= 750) {
     out = "Alto";
   } else {
-    out = "Regular";
+    out = "Bueno";
   }
   ovl.innerHTML = out;
 }
